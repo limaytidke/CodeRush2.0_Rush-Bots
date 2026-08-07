@@ -47,7 +47,7 @@ None of these are hypothetical — they are the daily friction of working with A
 ---
 
 # 🧭 Executive Summary
-   *   Rush-Code is a model-independent, web-based agentic coding harness designed to securely intake a target repository, analyze issue descriptions, and generate code patches. Unlike raw LLMs, Rush-Code utilizes a verification-first loop: it runs local test suites (e.g., pytest) against its generated code, reads the error outputs, and iteratively revises the code until the tests pass. The platform includes a dedicated UI to view the agent's execution trace and a side-by-side ablation study comparing raw LLM outputs to our verified harness.
+   *   TermHarness AI is a model-independent, web-based agentic coding harness designed to securely intake a target repository, analyze issue descriptions, and generate code patches. Unlike raw LLMs, Rush-Code utilizes a verification-first loop: it runs local test suites (e.g., pytest) against its generated code, reads the error outputs, and iteratively revises the code until the tests pass. The platform includes a dedicated UI to view the agent's execution trace and a side-by-side ablation study comparing raw LLM outputs to our verified harness.
 
   *    Modern AI coding assistants — ChatGPT, Claude, Gemini, GitHub Copilot, Cursor — are remarkably good at producing code. They are far less reliable at proving that code works.
 
