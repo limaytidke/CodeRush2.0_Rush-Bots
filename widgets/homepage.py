@@ -1,24 +1,22 @@
 from textual.widgets import Static
 
-
 class HomePage(Static):
 
     def on_mount(self):
-
         self.update(
 """
 Repository Overview
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-------------------
 
 Welcome to CodeHarness
 
-✔ Repository not loaded
+[red]✗ Repository not loaded[/red]
 
-✔ Memory Ready
+[green]✓ Memory Ready[/green]
 
-✔ Context Manager Ready
+[green]✓ Context Manager Ready[/green]
 
-✔ Awaiting user action...
+[bold yellow]⚠ Awaiting user action...[/bold yellow]
 """
         )
