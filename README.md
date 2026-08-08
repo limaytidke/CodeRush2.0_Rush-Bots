@@ -168,12 +168,35 @@ CodeRush2.0_Rush-Bots-main/
 
 ### Prerequisites
 - Python 3.10+
-- Node.js 18+
-- An API key for your chosen LLM provider
+- [Ollama](https://ollama.com) installed locally (the app runs its LLM calls against a local Ollama server — no API key required)
 
-### Dependencies
-- Ollama Model
-- 
+### Steps
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/limaytidke/CodeRush2.0_Rush-Bots.git
+cd CodeRush2.0_Rush-Bots
+
+# 2. Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Pull the model the app expects
+ollama pull qwen2.5-coder:3b
+
+# 5. Start Ollama (if not already running as a background service)
+ollama serve
+
+# 6. Run the app (in a separate terminal, from the repo root)
+python main.py
+```
+
+The app launches directly as a terminal UI — no browser or separate server needed.
+
+> **Note:** `services/verifier.py` shells out to `pytest` to run a target repository's test suite, so `pytest` must be installed (it's included in `requirements.txt`).
 
 ---
 ## 📊 Benchmark (Illustrative)
