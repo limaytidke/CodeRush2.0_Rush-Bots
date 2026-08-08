@@ -1,47 +1,39 @@
+# services/verifier.py
 import subprocess
 import os
 
 class CodeVerifier:
-    def __init__(self, target_directory: str):
-        self.target_directory = target_directory
+    def __init__(self, target_directory="."):
+        self.target_directory = os.path.abspath(target_directory)
 
-    def run_tests(self) -> dict:
+    def run_tests(self, test_file_name=None) -> dict:
         """
-        Runs the test suite (pytest) in the target directory.
-        Captures the terminal output so the AI can read the errors.
+        Runs pytest for a specific test file or the whole directory.
         """
         try:
-            # We use subprocess to simulate a user typing 'pytest' in the terminal
+            env = os.environ.copy()
+            env["PYTHONPATH"] = self.target_directory
+
+            cmd = ["pytest", "-q", "--tb=short"]
+            
+            # Specific test file targeting to isolate tests
+            if test_file_name:
+                test_path = os.path.join(self.target_directory, "test", test_file_name)
+                if os.path.exists(test_path):
+                    cmd.append(test_path)
+
             result = subprocess.run(
-                ["pytest"], 
+                cmd,
                 cwd=self.target_directory,
                 capture_output=True,
                 text=True,
-                check=False # We want to capture the output even if the tests fail!
+                env=env,
+                timeout=30
             )
-            
+
             return {
-                "success": result.returncode == 0,
-                "output": result.stdout if result.returncode == 0 else result.stdout + "\n" + result.stderr
-            }
-            
-        except FileNotFoundError:
-            return {
-                "success": False,
-                "output": "Error: 'pytest' command not found. Make sure it is installed."
+                "success": (result.returncode == 0),
+                "output": (result.stdout if result.stdout else result.stderr).strip()
             }
         except Exception as e:
-            return {
-                "success": False,
-                "output": f"Verification Engine Error: {str(e)}"
-            }
-
-if __name__ == "__main__":
-    print("Booting up Code Verifier...")
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    
-    verifier = CodeVerifier(target_directory=current_dir)
-    test_results = verifier.run_tests()
-    
-    print(f"\nDid the tests pass? {test_results['success']}")
-    print(f"Terminal Output:\n{test_results['output']}")
+            return {"success": False, "output": str(e)}
