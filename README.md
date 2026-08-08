@@ -102,13 +102,13 @@ Diagram reflects the target architecture. See Key Features for what is implement
 
 | Layer | Technology |
 |---|---|
-| **Frontend** | React, TypeScript, Vite `<!-- update to match your actual stack -->` |
-| **Backend** | Python (FastAPI) `<!-- update -->` |
-| **AI / Orchestration** | Model-agnostic LLM client layer (Anthropic / OpenAI-compatible) |
-| **Databases** | SQLite (local dev) / PostgreSQL (planned) |
+| **Frontend** | Textual Library (python) |
+| **Backend** | Python |
+| **AI / Orchestration** | Ollama |
+| **Databases** | SQLite |
 | **Testing** | Pytest (target repos), Jest/Vitest (harness itself) |
 | **Containers** | Docker (planned for sandboxed execution) |
-| **Deployment** | TBD — Vercel / Render / self-hosted |
+| **Deployment** | Netlify |
 | **CI/CD** | GitHub Actions (planned) |
 | **Version Control** | Git / GitHub |
 | **Observability** | Structured execution logs surfaced via the Execution Timeline UI |
@@ -206,7 +206,7 @@ The app launches directly as a terminal UI — no browser or separate server nee
 
 | Metric | Raw LLM (single-shot) | TermHarness AI |
 |---|---|---|
-| Test Pass Rate | *e.g., X%* | *e.g., X%* |
+| Test Pass Rate | *e.g., High* | *e.g., Standard* |
 | Avg. Iterations to Pass | 1 (no retry) | *e.g., N* |
 | Patches Verified Before Delivery | No | Yes |
 | Regressions Introduced (sampled) | *unmeasured* | *unmeasured* |
