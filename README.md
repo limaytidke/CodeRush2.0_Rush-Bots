@@ -47,7 +47,7 @@ None of these are hypothetical — they are the daily friction of working with A
 ---
 
 # 🧭 Executive Summary
-   *   Rush-Code is a model-independent, web-based agentic coding harness designed to securely intake a target repository, analyze issue descriptions, and generate code patches. Unlike raw LLMs, Rush-Code utilizes a verification-first loop: it runs local test suites (e.g., pytest) against its generated code, reads the error outputs, and iteratively revises the code until the tests pass. The platform includes a dedicated UI to view the agent's execution trace and a side-by-side ablation study comparing raw LLM outputs to our verified harness.
+   *   TeamHarness AI is a model-independent, web-based agentic coding harness designed to securely intake a target repository, analyze issue descriptions, and generate code patches. Unlike raw LLMs, Rush-Code utilizes a verification-first loop: it runs local test suites (e.g., pytest) against its generated code, reads the error outputs, and iteratively revises the code until the tests pass. The platform includes a dedicated UI to view the agent's execution trace and a side-by-side ablation study comparing raw LLM outputs to our verified harness.
 
   *    Modern AI coding assistants — ChatGPT, Claude, Gemini, GitHub Copilot, Cursor — are remarkably good at producing code. They are far less reliable at proving that code works.
 
@@ -114,6 +114,66 @@ Diagram reflects the target architecture. See Key Features for what is implement
 | **Observability** | Structured execution logs surfaced via the Execution Timeline UI |
 
 *Replace placeholders with your team's actual choices before submission — an accurate stack table is more credible to judges than a generic one.*
+
+---
+
+## 📁 Folder Structure
+```
+
+CodeRush2.0_Rush-Bots-main/
+├── .gitignore
+├── README.md
+├── error_check.py          # 7.5 KB, unclear purpose, sits at root
+├── main.py                 # entry point (5 lines)
+├── requirements.txt
+├── screens/                # Textual screen views
+│   ├── benchmark.py
+│   ├── context.py
+│   ├── dashboard.py
+│   ├── evidence.py
+│   ├── execution.py
+│   ├── memory.py
+│   ├── repository.py     
+│   ├── settings.py
+│   ├── task.py
+│   └── verification.py
+├── services/                # core logic
+│   ├── benchmark.py      
+│   ├── llm_adapter.py       # real one — talks to local Ollama
+│   ├── parser.py
+│   ├── patcher.py
+│   ├── scanner.py
+│   ├── tempCodeRunnerFile.py  
+│   ├── temp_llm              
+│   └── verifier.py
+├── tui/
+│   ├── __init__.py
+│   └── tui.py               # App class, wires up Dashboard
+└── widgets/
+    ├── context_menu.py
+    ├── footerbar.py
+    ├── homepage.py
+    ├── logpanel.py          
+    ├── sidebar.py
+    ├── statusbar.py         
+    └── topbar.py
+
+```
+
+*Adjust to your actual repo layout — this is a representative structure for a project of this shape.*
+
+---
+
+## ⚙️ Installation
+
+### Prerequisites
+- Python 3.10+
+- Node.js 18+
+- An API key for your chosen LLM provider
+
+### Dependencies
+- Ollama Model
+- 
 
 ---
 ## 📊 Benchmark (Illustrative)
